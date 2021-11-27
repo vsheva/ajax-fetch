@@ -1,29 +1,14 @@
-const data = {};
+login = () => {
+  const params = {
+    email: document.querySelector("#loginEmail").value,
+    password: document.querySelector("#loginPassword").value,
+  };
 
-const getData = fetch("db.json");
-console.log(getData);
-getData
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-const sendData = fetch("https://jsonplaceholder.typicode.com/posts", {
-  method: "POST",
-  body: JSON.stringify(data),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8",
-  },
-});
-console.log(sendData);
-sendData
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  const http = new XMLHttpRequest();
+  http.open("POST", "https://jsonplaceholder.typicode.com/posts");
+  http.setRequestHeader("Content-type", "application/json");
+  http.send(JSON.stringify(params)); // Make sure to stringify
+  http.onload = function () {
+    alert(http.responseText);
+  };
+};
