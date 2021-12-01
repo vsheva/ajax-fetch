@@ -16,10 +16,10 @@ const sendData = ({ url, data = {}, method = "GET" }) => {
 
 
 getData("db.json")
-    .then((response) => {
+    .then((res) => {
       sendData({
         url: "https://jsonplaceholder.typicode.com/posts",
-        data: JSON.stringify(response),
+        data: JSON.stringify(res),
         method: "POST",
       }).then((data) => {
             console.log(data);
